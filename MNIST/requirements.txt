@@ -1,0 +1,6 @@
+secml[torch,cleverhans]
+torch
+torchvision
+shap
+ipython
+absl-py

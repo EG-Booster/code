@@ -1,0 +1,7 @@
+git+https://github.com/cleverhans-lab/cleverhans.git#egg=cleverhans
+torch
+torchvision
+ipython
+absl-py
+robustness
+captum
