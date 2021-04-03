@@ -901,14 +901,14 @@ def main(_):
   # Perfom 10 runs of SHAP explanations for stability analysis
   if FLAGS.defended == False:
       for i in range(0,10): 
-          shp=deepexplain(test_loader,os.path.join(cwd,'cifar','shp'+str(i)),1000, model)
+          shp=deepexplain(test_loader,os.path.join(cwd,'cifar','shp'+str(i)),5, model)
           print(shp.shape)
   
       # Perform Stability Analysis
-      stability_plot(10,test_loader,10,'FGS',FLAGS.norm,FLAGS.eps,model,1000,os.path.join(cwd,'cifar','stability'+'_FGSL'+str(FLAGS.norm)+'.png'))
+      stability_plot(10,test_loader,10,'FGS',FLAGS.norm,FLAGS.eps,model,5,os.path.join(cwd,'cifar','stability'+'_FGSL'+str(FLAGS.norm)+'.png'))
       
       # Plot evasion rate curve for different epsilons
-      eps_plot(test_loader,5000,model,os.path.join(cwd,'cifar','eps_anaFGS.png'),'FGS',defended=False)
+      eps_plot(test_loader,5,model,os.path.join(cwd,'cifar','eps_anaFGS.png'),'FGS',defended=False)
   
   
 
