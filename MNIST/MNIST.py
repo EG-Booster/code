@@ -613,7 +613,7 @@ def main(_):
     ege_best = EG_Attack(eva_adv_ds.X,attack_ds.X,attack_ds.Y,clf,shp,'FGS',norm=FLAGS.norm,eps=FLAGS.eps,run=2,size=FLAGS.size)
     
     #### Stability plots
-    size=5
+    size=1000
     ### perform shap explanations 10 times for stability analysis
     print('\nStability Analysis')
     for i in range(10):
@@ -623,12 +623,12 @@ def main(_):
     
     #### Evasion curve plots
     print('\nPloting Evasion curve for different epsilons')
-    size=5
+    size=5000
     eps_plot(ts,size,clf,os.path.join(cwd,'eps_anaFGS.png'),'FGS')
     
     
 if __name__ == '__main__':    
-    flags.DEFINE_integer("size", 10, "Test set size")
+    flags.DEFINE_integer("size", 10000, "Test set size")
     flags.DEFINE_float("eps", 0.3, "Total epsilon for FGS and PGD attacks.")
     flags.DEFINE_float("norm",np.inf, "Used distance metric.")
     flags.DEFINE_bool(
