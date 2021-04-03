@@ -375,7 +375,7 @@ def FGS(model,test_loader,norm,size,eps,defended=False):
     del labels
     del x_test
     torch.cuda.empty_cache()
-    '''
+    
     if defended==False:
         f = open(os.path.join(cwd,'cifar','cifar-FGSL'+str(norm)+str(eps)), 'wb') 
     else:
@@ -383,7 +383,7 @@ def FGS(model,test_loader,norm,size,eps,defended=False):
     
     pickle.dump(x_fgm, f)
     f.close()
-    '''
+    
     return x_fgm
     
 def PGD(model,test_loader,norm,size,eps,defended=False):
@@ -713,7 +713,7 @@ def stability_plot(k,test_loader,l,attack,norm,eps,model,size,path,defended=Fals
     runs = []
     
     # Load results of baseline attack
-    f = open(os.path.join(cwd,'cifar','cifar-'+attack+'L'+str(norm)), 'rb')
+    f = open(os.path.join(cwd,'cifar','cifar-'+attack+'L'+str(norm)+str(eps)), 'rb')
     X_adv = pickle.load(f)
     f.close()
     
