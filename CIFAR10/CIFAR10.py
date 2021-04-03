@@ -896,9 +896,11 @@ def main(_):
   torch.cuda.empty_cache()
   
   # Perform EG-Booster attack
+  print('\n Performing EG-Booster...')
   best_adv = EG_Attack(0,test_loader,loader,model,shp,'FGS',FLAGS.eps, FLAGS.norm,1,FLAGS.size,defended=FLAGS.defended)
   
   # Perfom 10 runs of SHAP explanations for stability analysis
+  print('\n Performing Stability Analysis...')
   if FLAGS.defended == False:
       for i in range(0,10): 
           shp=deepexplain(test_loader,os.path.join(cwd,'cifar','shp'+str(i)),5, model)
