@@ -7,7 +7,6 @@ import pickle
 import time
 import shap
 import torch
-import logging
 from secml.adv.attacks.evasion.cleverhans.c_attack_evasion_cleverhans import CAttackEvasionCleverhans
 from cleverhans.attacks import \
     FastGradientMethod, CarliniWagnerL2, \
@@ -22,8 +21,16 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
-logger = logging.getLogger('my-logger')
-logger.propagate = False
+from contextlib import contextmanager
+@contextmanager
+def suppress_stdout():
+    with open(os.devnull, "w") as devnull:
+        old_stdout = sys.stdout
+        sys.stdout = devnull
+        try:  
+            yield
+        finally:
+            sys.stdout = old_stdout
 
 # Disable
 def blockPrint():
@@ -53,10 +60,9 @@ def FGS(clf,attack_X,attack_y, norm,eps):
     FGS_attack = CAttackEvasionCleverhans(clf, y_target=None, clvh_attack_class=FastGradientMethod, store_var_list=None,eps=eps, norm = norm)
 
     print("Attack started...")
-    blockPrint()
-    start_time = time.time()
-    eva_y_pred, _, eva_adv_ds, _ = FGS_attack.run(attack_X, attack_y)
-    enablePrint()
+    with suppress_stdout():
+        start_time = time.time()
+        eva_y_pred, _, eva_adv_ds, _ = FGS_attack.run(attack_X, attack_y)
     print((time.time() - start_time)/3600,' hrs')
     print("Attack complete!")
     
@@ -358,7 +364,8 @@ def EG_Attack(eva_adv_dsX,attack_dsX,Clabels,clf,shp,attack_name,norm, eps,run,s
     
     start_time = time.time()
     for ind in range(org_imgs.shape[0]):
-        new_adv , change, pos_unpert,out_bound  = One_EG_Attack(org_imgs[ind],adv_imgs[ind],shp[labels[ind],ind,0,:,:],labels[ind],clf,norm, eps)
+        with suppress_stdout():
+            new_adv , change, pos_unpert,out_bound  = One_EG_Attack(org_imgs[ind],adv_imgs[ind],shp[labels[ind],ind,0,:,:],labels[ind],clf,norm, eps)
         
         tot_gain += change
         tot_pos += pos_unpert 
@@ -585,16 +592,18 @@ def main(_):
     ts.X /= 255.0
     
     print('Loading and testing the CNN Model')
-    clf = load_model('mnist-cnn')
-    label_torch = clf.predict(ts.X, return_decision_function=False)
-    acc_torch = metric.performance_score(ts.Y, label_torch)
+    with suppress_stdout():
+        clf = load_model('mnist-cnn')
+        label_torch = clf.predict(ts.X, return_decision_function=False)
+        acc_torch = metric.performance_score(ts.Y, label_torch)
     print("Model Accuracy: {}".format(acc_torch))
 
     ### Perfom FGSLinf Attack
     attack_ds = ts[:FLAGS.size, :]
     print('\nPerforming baseline attack')
     adv_imgs = FGS(clf,attack_ds.X,attack_ds.Y,FLAGS.norm,FLAGS.eps)
-    eva_adv_ds = CDataset(adv_imgs,attack_ds.Y)
+    with suppress_stdout():
+        eva_adv_ds = CDataset(adv_imgs,attack_ds.Y)
     
     ### Perform explanations for EG-Booster
     shp = deepexplain(clf,tr,attack_ds.X,os.path.join(cwd,'org_exp0'),FLAGS.size)
