@@ -580,7 +580,7 @@ def EG_Attack(start,test_loader,adv_loader,model,shp,attack_name,eps, norm_type,
     max_change = 0
     tot_change = []
     tot_pos =0
-    print('SHAP shape:',shp.shape)
+    
     for data,adv_imgs  in zip(test_loader,adv_loader):
         x_batch, y_batch = data
         if i==0:
@@ -590,7 +590,7 @@ def EG_Attack(start,test_loader,adv_loader,model,shp,attack_name,eps, norm_type,
         
         print('Performing EG-Booster on batch {} ...'.format(i+1))
         for ind in range(batch_size):
-            print('shap index: ', ind+i*batch_size)
+            
             new_adv , pert_change, pos_unpert, out_bound = One_EG_Attack(x_batch[ind],adv_imgs[ind],shp[ind+i*batch_size],y_batch[ind].item(),model,eps,norm_type)
             
             
