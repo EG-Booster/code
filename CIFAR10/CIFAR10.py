@@ -789,26 +789,11 @@ def eps_plot(test_loader,size,model,path,attack,defended=False):
         print('###Performing baseline attack...')
         if defended==False:
             if attack == 'PGD':
-                if eps == 0.3:
-                    f = open(os.path.join(cwd,'cifar','cifar-PGDL2'), 'rb')
-                    adv_imgs = pickle.load(f)
-                elif eps == 0.6:
-                    f = open(os.path.join(cwd,'cifar','cifar-PGDL2_eps0.6'), 'rb')
-                    adv_imgs = pickle.load(f)
-                else:
-                    adv_imgs = PGD(model,test_loader,2,size,eps,defended=False)
+                adv_imgs = PGD(model,test_loader,2,size,eps,defended=False)
                     
             elif attack == 'FGS':
-                if eps == 0.3:
-                     f = open(os.path.join(cwd,'cifar','cifar-FGSL2'), 'rb')
-                     adv_imgs = pickle.load(f)
-                elif eps == 0.6:
-                     f = open(os.path.join(cwd,'cifar','cifar-FGSL2_eps0.6'), 'rb')
-                     adv_imgs = pickle.load(f)
+                adv_imgs = FGS(model,test_loader,2,size,eps,defended=False)
                 
-                
-                else:
-                    adv_imgs = FGS(model,test_loader,2,size,eps,defended=False)
             else:
                 raise ValueError("only FGS and PGD are currrently supported for CIFAR10-CNN different epsilon analysis")
         else:
@@ -902,20 +887,20 @@ def main(_):
   # Perfom 10 runs of SHAP explanations for stability analysis
   print('\n Performing Stability Analysis...')
   if FLAGS.defended == False:
-      for i in range(0,10): 
-          shp=deepexplain(test_loader,os.path.join(cwd,'cifar','shp'+str(i)),5, model)
+      for i in range(1,10): 
+          shp=deepexplain(test_loader,os.path.join(cwd,'cifar','shp'+str(i)),1000, model)
           print(shp.shape)
   
       # Perform Stability Analysis
-      stability_plot(10,test_loader,10,'FGS',FLAGS.norm,FLAGS.eps,model,5,os.path.join(cwd,'cifar','stability'+'_FGSL'+str(FLAGS.norm)+'.png'))
+      stability_plot(10,test_loader,10,'FGS',FLAGS.norm,FLAGS.eps,model,1000,os.path.join(cwd,'cifar','stability'+'_FGSL'+str(FLAGS.norm)+'.png'))
       
       # Plot evasion rate curve for different epsilons
-      eps_plot(test_loader,5,model,os.path.join(cwd,'cifar','eps_anaFGS.png'),'FGS',defended=False)
+      eps_plot(test_loader,5000,model,os.path.join(cwd,'cifar','eps_anaFGS.png'),'FGS',defended=False)
   
   
-
+#### Change the following config as suited
 if __name__ == '__main__':
-    flags.DEFINE_integer("size", 5, "Test set size")
+    flags.DEFINE_integer("size", 10000, "Test set size")
     flags.DEFINE_float("eps", 0.3, "Total epsilon for FGS and PGD attacks.")
     flags.DEFINE_integer("norm", 2, "Used distance metric.")
     flags.DEFINE_bool(
