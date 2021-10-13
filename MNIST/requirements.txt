@@ -3,3 +3,4 @@ torchvision
 shap
 ipython
 absl-py
+numpy==1.20
