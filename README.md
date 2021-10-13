@@ -12,7 +12,11 @@ This repository contains the source code accompanying our paper EG-Booster: Expl
 
 ### MNIST
 It is highly recommended to create a new separate python3 environment:
+
 ```$ python3 -m venv ./EG-MNIST-env```
+
 ```$ source EG-MNIST-env/bin/activate```
+
 ```$ cd code/MNIST```
+
 ```$ pip install -r requirements.txt```
