@@ -1,7 +1,4 @@
-gast>=0.3.2
-numpy==1.16.0
-secml[torch,cleverhans]
-torch
+secml[pytorch,cleverhans]
 torchvision
 shap
 ipython
