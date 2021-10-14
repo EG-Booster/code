@@ -1,4 +1,5 @@
-secml[pytorch,cleverhans]==0.14
+secml[pytorch]==0.14
+git+https://github.com/cleverhans-lab/cleverhans.git#egg=cleverhans
 torchvision
 shap
 ipython
