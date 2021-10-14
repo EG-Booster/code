@@ -1,5 +1,5 @@
 secml[pytorch]==0.14
-git+https://github.com/cleverhans-lab/cleverhans.git#egg=cleverhans
+cleverhans==v3.1.0
 torchvision
 tensorflow
 shap
