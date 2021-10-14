@@ -20,3 +20,15 @@ It is highly recommended to create a new separate python3 environment:
 ```$ cd code/MNIST```
 
 ```$ pip install -r requirements.txt```
+
+
+### CIFAR10
+It is highly recommended to create a new separate python3 environment:
+
+```$ python3 -m venv ./EG-CIFAR10-env```
+
+```$ source EG-CIFAR10-env/bin/activate```
+
+```$ cd code/CIFAR10```
+
+```$ pip install -r requirements.txt```
