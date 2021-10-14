@@ -10,16 +10,6 @@ This repository contains the source code accompanying our paper EG-Booster: Expl
 ### Downloading Repo
 ```$ git clone https://github.com/EG-Booster/code.git ```
 
-### MNIST
-It is highly recommended to create a new separate python3 environment:
-
-```$ python3 -m venv ./EG-MNIST-env```
-
-```$ source EG-MNIST-env/bin/activate```
-
-```$ cd code/MNIST```
-
-```$ pip install -r requirements.txt```
 
 
 ### CIFAR10
@@ -32,3 +22,5 @@ It is highly recommended to create a new separate python3 environment:
 ```$ cd code/CIFAR10```
 
 ```$ pip install -r requirements.txt```
+
+```$ python CIFAR10.py```
