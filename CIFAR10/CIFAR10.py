@@ -491,7 +491,7 @@ def One_EG_Attack(org_img,adv_img,shaply,label,model,eps,norm_type):
     attmpt = 0
     
     norm = round(torch.norm((adv_img.cpu() - org_img.cpu()).cuda(), norm_type).item(),2)
-    print('Initial perturbation size:',norm)
+    #print('Initial perturbation size:',norm)
     
     if norm > eps:
         raise ValueError("norm {} cannot be used : Choose the same norm order used for initial attack".format(norm_type))
