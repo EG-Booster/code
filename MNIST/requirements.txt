@@ -1,7 +1,7 @@
 secml[pytorch]==0.14
 cleverhans==v3.1.0
 torchvision
-tensorflow
+tensorflow==1.x
 shap
 ipython
 absl-py
