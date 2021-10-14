@@ -8,10 +8,17 @@ import time
 import shap
 import torch
 from c_attack_evasion_cleverhans import CAttackEvasionCleverhans
+'''
 from cleverhans.torch.attacks import \
     FastGradientMethod, CarliniWagnerL2, \
     ProjectedGradientDescent, MomentumIterativeMethod, \
     BasicIterativeMethod
+'''
+from cleverhans.torch.attacks.fast_gradient_method import FastGradientMethod
+from cleverhans.torch.attacks.projected_gradient_descent import projected_gradient_descent
+from cleverhans.torch.attacks.basic_iterative_method import BasicIterativeMethod
+from cleverhans.torch.attacks.carlini_wagner_l2 import CarliniWagnerL2
+from cleverhans.torch.attacks.momentum_iterative_method import MomentumIterativeMethod
 
 from secml.data.c_dataset import CDataset
 from secml.data.loader import CDataLoaderMNIST
