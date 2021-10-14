@@ -443,7 +443,7 @@ def deepexplain(test_loader,path,size, model):
         torch.cuda.empty_cache()
         org_img = torch.cuda.FloatTensor(org_img.cuda())
         #print(org_img.shape)
-        print('Explainnig batch {}'.format(j+1))
+        print('Explainig batch {}'.format(j+1))
         for i in range(labels.shape[0]):
             rand_img_dist = torch.cat([org_img[i:i+1] * 0, org_img[i:i+1] * 255])
             attributions_gs = gradient_shap.attribute(org_img[i:i+1],
