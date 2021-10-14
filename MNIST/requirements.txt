@@ -1,5 +1,4 @@
-secml[pytorch]==0.14
-cleverhans
+secml[pytorch,cleverhans]==0.14
 torchvision
 tensorflow==2.4
 shap
