@@ -15,7 +15,7 @@ from cleverhans.torch.attacks import \
     ProjectedGradientDescent, SaliencyMapMethod, MomentumIterativeMethod, \
     MadryEtAl, BasicIterativeMethod, DeepFool
 '''
-from cleverhans.model import Model
+#from cleverhans.model import Model
 
 from secml.adv.attacks import CAttack
 from secml.adv.attacks.evasion import CAttackEvasion
@@ -395,7 +395,7 @@ class CAttackEvasionCleverhans(CAttackEvasion,
         const_value = self._tfsess.run(const)
         return const_value
 
-
+'''
 class _CModelCleverhans(Model):
     """Receive our library classifier and convert it into a cleverhans model.
 
@@ -494,7 +494,7 @@ class _CModelCleverhans(Model):
         return tf.get_default_graph().get_tensor_by_name(
             "{:}:0".format(variable_name))
 
-
+'''
 class _CClassifierToTF:
     """
     Creates a Tensorflow operation whose result are the scores produced by
