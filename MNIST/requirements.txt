@@ -1,6 +1,0 @@
-secml[pytorch,cleverhans]==0.14
-torchvision
-shap
-ipython
-absl-py
-numpy==1.20
