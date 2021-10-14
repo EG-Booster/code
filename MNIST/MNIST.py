@@ -7,11 +7,11 @@ import pickle
 import time
 import shap
 import torch
-from secml.adv.attacks.evasion.cleverhans.c_attack_evasion_cleverhans import CAttackEvasionCleverhans
-#from cleverhans.attacks import \
-#    FastGradientMethod, CarliniWagnerL2, \
-#    ProjectedGradientDescent, MomentumIterativeMethod, \
-#    BasicIterativeMethod
+from c_attack_evasion_cleverhans import CAttackEvasionCleverhans
+from cleverhans.torch.attacks import \
+    FastGradientMethod, CarliniWagnerL2, \
+    ProjectedGradientDescent, MomentumIterativeMethod, \
+    BasicIterativeMethod
 
 from secml.data.c_dataset import CDataset
 from secml.data.loader import CDataLoaderMNIST
