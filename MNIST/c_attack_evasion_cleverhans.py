@@ -8,11 +8,13 @@
 
 """
 import numpy as np
-import tensorflow as tf
+#import tensorflow as tf
+'''
 from cleverhans.torch.attacks import \
     FastGradientMethod, CarliniWagnerL2, ElasticNetMethod, SPSA, LBFGS, \
     ProjectedGradientDescent, SaliencyMapMethod, MomentumIterativeMethod, \
     MadryEtAl, BasicIterativeMethod, DeepFool
+'''
 from cleverhans.model import Model
 
 from secml.adv.attacks import CAttack
