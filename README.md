@@ -25,4 +25,4 @@ It is highly recommended to create a new separate python3 environment:
 
 ```$ python CIFAR10.py```
 
-Note: to avoid any memory-related errors please adjust ```batch_size = 128``` and ```num_workers = 2``` in the configuration area of ```CIFAR10.py```, according to your system's specs.
+Note: to avoid any memory-related errors please adjust ```batch_size``` and ```num_workers``` in the configuration area of ```CIFAR10.py```, according to your system's specs. Default values are ```batch_size = 128``` and ```num_workers = 2```
