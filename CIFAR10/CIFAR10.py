@@ -35,7 +35,7 @@ def enablePrint():
     
 # Configuration area
 #############################
-batch_size = 128
+batch_size = 64
 num_workers = 2
 #############################
 use_cuda = True
