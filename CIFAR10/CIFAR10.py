@@ -536,10 +536,11 @@ def One_EG_Attack(org_img,adv_img,shaply,label,model,eps,norm_type):
                             attempt = 0
                             reduce = 1
                             while attempt < 20 and round(torch.norm((ege_best.cpu()- org_img.cpu()).cuda(), norm_type).item(),2) > eps:
+                                print("{} > {} : perturbation out of bound! reducing the perturbation...".format(round(torch.norm((ege_best.cpu()- org_img.cpu()).cuda(), norm_type).item(),2), eps))
                                 reduce +=1
                                 pert = pert/reduce
                                 ege_best[i,j,k] = adv_img[i,j,k] + pert
-                                attempt += 2
+                                attempt += 1
                             
                             if round(torch.norm((ege_best.cpu() - org_img.cpu()).cuda(), norm_type).item(),2) > eps:
                                 ege_best[i,j,k] = adv_img[i,j,k]
